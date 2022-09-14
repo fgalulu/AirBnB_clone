@@ -6,18 +6,32 @@ import unittest
 class TestBaseModel(unittest.TestCase):
     """
     """
-    pass
+    def test_to_dict(self):
+        """
+        Test conversion of object attributes to dictionanry.
+        """
+        my_model = BaseModel()
+        my_model.name = "Alx"
+        my_model.message = "C is fun"
+        m_dict = the_model.to_dict()
+        self.assertEqual(m_dict["__class__"], "BaseModel")
+        self.assertEqual(m_dict["message"], "C is fun")
 
-my_model = BaseModel()
-my_model.name = "My First Model"
-my_model.my_number = 89
-print(my_model)
-my_model.save()
-print(my_model)
-my_model_json = my_model.to_dict()
-print(my_model_json)
-print("JSON of my_model:")
-for key in my_model_json.keys():
-    print("\t{}: ({}) - {}".format(key, 
-                                   type(my_model_json[key]), 
-                                   my_model_json[key]))
+    def test_save(self):
+        """
+        """
+        my_model = BaseModel()
+        created_at_1 = my_model.created_at
+        updated_at_1 = may_model.updated_at
+        my_model.save()
+        created_at_2 = my_model.created_at
+        updated_at_2 = may_model.updated_at
+        self.assertEqual(created_at_1, created_at_2)
+        self.assertNotEqual(updated_at_1, updated_at_2)
+
+    def test_str(self):
+        """
+        """
+        my_model = BaseModel()
+        string = "[BaseModel] ({}) {}".format(my_model.id, my_model.__dict__)
+        self.assertEqual(string, str(my_model))

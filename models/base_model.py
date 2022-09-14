@@ -16,7 +16,7 @@ class BaseModel():
 
     def __str__(self):
         """String representation of the BaseModel"""
-        return "[{:s}] ({:s}) <{}>".format(self.__class__.__name__, self.id,
+        return "[{:s}] ({:s}) {}".format(self.__class__.__name__, self.id,
                                        self.__dict__)
     def save(self):
         """
@@ -24,6 +24,7 @@ class BaseModel():
         updated_at with the current datetime.
         """
         self.updated_at = datetime.utcnow()
+
 
     def to_dict(self):
         """
