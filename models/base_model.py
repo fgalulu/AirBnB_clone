@@ -9,14 +9,14 @@ time_format = "%Y-%m-%dT%H:%M:%S.%f"
 
 class BaseModel():
     """Defines comman attributes for other classes."""
-    def __init__(self, *args, *kwargs):
-        self.id = uuid.uuid4()
+    def __init__(self, *args):
+        self.id = str(uuid.uuid4())
         self.created_at = datetime.utcnow()
         self.updated_at = self.created_at
 
     def __str__(self):
         """String representation of the BaseModel"""
-        return "[{:s}] ({:s}) <{}>".format(self.__class__.__name__, self.id
+        return "[{:s}] ({:s}) <{}>".format(self.__class__.__name__, self.id,
                                        self.__dict__)
     def save(self):
         """
