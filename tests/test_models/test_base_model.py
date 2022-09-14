@@ -19,6 +19,7 @@ class TestBaseModel(unittest.TestCase):
 
     def test_save(self):
         """
+        test save model
         """
         my_model = BaseModel()
         created_at_1 = my_model.created_at
@@ -31,6 +32,7 @@ class TestBaseModel(unittest.TestCase):
 
     def test_str(self):
         """
+        test string represenattion
         """
         my_model = BaseModel()
         string = "[BaseModel] ({}) {}".format(my_model.id, my_model.__dict__)

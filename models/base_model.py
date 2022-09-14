@@ -9,10 +9,19 @@ time_format = "%Y-%m-%dT%H:%M:%S.%f"
 
 class BaseModel():
     """Defines comman attributes for other classes."""
-    def __init__(self, *args):
-        self.id = str(uuid.uuid4())
-        self.created_at = datetime.utcnow()
-        self.updated_at = self.created_at
+    def __init__(self, *args, **kwargs):
+        if  kwargs:
+            for key, value in kwargs.items():
+                if key != '__class__':
+                    setatrr(self, key, value)
+            self.created_at = datetime.strptime(kwargs['created_at'],
+                    time_format)
+            self.updated_at = datetime.strptime(kwargs['updated_at'],
+                    time_format)
+        else:
+            self.id = str(uuid.uuid4())
+            self.created_at = datetime.utcnow()
+            self.updated_at = self.created_at
 
     def __str__(self):
         """String representation of the BaseModel"""
