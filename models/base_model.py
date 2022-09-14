@@ -13,7 +13,7 @@ class BaseModel():
         if  kwargs:
             for key, value in kwargs.items():
                 if key != '__class__':
-                    setatrr(self, key, value)
+                    setattr(self, key, value)
             self.created_at = datetime.strptime(kwargs['created_at'],
                     time_format)
             self.updated_at = datetime.strptime(kwargs['updated_at'],
