@@ -6,7 +6,7 @@ Serializes instance to JSON file and deserializes JSON file file to instance
 import json
 
 
-class FiileStorage:
+class FileStorage:
     """
 
     """
