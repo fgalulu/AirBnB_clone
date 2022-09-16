@@ -24,5 +24,10 @@ class HBNBCommand(cmd.Cmd):
         """
         return True
 
+    def emptyline(self):
+        """
+        Overwriting the emptyline method
+        """
+
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
