@@ -5,6 +5,7 @@ console
 
 import cmd
 import shlex
+import models
 from models.base_model import BaseModel
 
 classes = {"BaseModel": BaseModel
@@ -67,7 +68,7 @@ class HBNBCommand(cmd.Cmd):
             else:
                 print("** instance id missing **")
         else:
-            print("** class doesnt exist **")
+            print("** class doesn't exist **")
 
     def do_all(self, arg):
         """
@@ -87,8 +88,28 @@ class HBNBCommand(cmd.Cmd):
                     obj_list.append(str(models.storage.all()[key]))
                 print("[", end="")
                 print(", ".join(obj_list), end="")
+        else:
+            print("** class doesn't exists **")
+
+    def do_show(self, arg):
+        """
+        Prints an instance as a string based on the class and id
+        """
+        args = shlex.split(arg)
+        if len(args) == 0:
+            print("** class doesn't exist **")
+            return False
+        if arg[0] in classes:
+            if len(args) > 1:
+                value = args[0] + "." + args[1]
+                if value in models.storage.all():
+                    print(models.storage.all().[key]
+                else:
+                    print("** no instance found **")
             else:
-                print("** class doesnt exists **")
+                print("** instance id missing **")
+        else:
+            print("** class doesn't exist **")
 
     def do_update(self, arg):
         """
