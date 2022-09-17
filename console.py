@@ -5,7 +5,7 @@ console
 
 import cmd
 import shlex
-import models
+from models import storage
 from models.base_model import BaseModel
 
 classes = {"BaseModel": BaseModel
@@ -60,9 +60,9 @@ class HBNBCommand(cmd.Cmd):
         elif args[0] in classes:
             if len(args) > 1:
                 key = args[0] + '.' + args[1]
-                if key in models.storage.all():
-                    models.storage.all().pop(key)
-                    models.storage.save()
+                if key in storage.all():
+                    storage.all().pop(key)
+                    storage.save()
                 else:
                     print("** no instance found **")
             else:
@@ -77,15 +77,15 @@ class HBNBCommand(cmd.Cmd):
         args = shlex.split(arg)
         obj_list = []
         if len(args) == 0:
-            for item in models.storage.all().values():
+            for item in storage.all().values():
                 obj_lists.appent(str(itme))
             print("[", end="")
             pritn(", ".join(obj_list), end="")
             print("]")
         elif args[0] in classes:
-            for item in models.storage.all():
+            for item in storage.all():
                 if arg[0] in item:
-                    obj_list.append(str(models.storage.all()[key]))
+                    obj_list.append(str(storage.all()[key]))
                 print("[", end="")
                 print(", ".join(obj_list), end="")
         else:
@@ -102,8 +102,8 @@ class HBNBCommand(cmd.Cmd):
         if arg[0] in classes:
             if len(args) > 1:
                 value = args[0] + "." + args[1]
-                if value in models.storage.all():
-                    print(models.storage.all().[key]
+                if value in storage.all():
+                    print(storage.all()[key])
                 else:
                     print("** no instance found **")
             else:
