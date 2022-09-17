@@ -5,6 +5,10 @@ console
 
 import cmd
 import shlex
+from models.base_model import BaseModel
+
+classes = {"BaseModel": BaseModel
+        }
 
 
 class HBNBCommand(cmd.Cmd):
