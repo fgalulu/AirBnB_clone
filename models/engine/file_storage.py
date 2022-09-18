@@ -11,7 +11,8 @@ classes = {"BaseModel": BaseModel}
 
 class FileStorage:
     """
-
+    This class serializes instances to a JSON file and deserializes
+    JSON file to instances
     """
     __file_path = 'file.json'
     __objects = {}
@@ -24,7 +25,7 @@ class FileStorage:
         """
         sets in _objects the obj with key
         """
-        if obj is not None:
+        if obj:
             key = obj.__class__.__name__ + '.' + obj.id
             self.__objects[key] = obj
 
@@ -43,10 +44,9 @@ class FileStorage:
         deserialize the JSON file to _objects
         """
         try:
-            with open(self.__file_path, 'r') as f:
+            with open(self.__file_path, encoding="UTF-8") as f:
                 json_object = json.load(f)
-            for key in json_object:
-                self.__objects[key] = classes[jo[key]["__class__"
-                                                      ]](**json_object[key])
+            for key, value in json_object.items():
+                self.__objects[key] = classes[value["__class__"]](**value)
         except FileNotFoundError:
             pass
