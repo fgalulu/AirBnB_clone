@@ -10,12 +10,12 @@ class FileStorage:
     """
 
     """
-    _file_path = 'file.json'
-    _objects = {}
+    __file_path = 'file.json'
+    __objects = {}
 
     def all(self):
         """returns the dictionary objects"""
-        return self._objects
+        return self.__objects
 
     def new(self, obj):
         """
@@ -30,9 +30,9 @@ class FileStorage:
         serialize _objects to JSON file.
         """
         my_dict = {}
-        for key in self._objects:
-            my_dict[key] = self._objects[key].to_dict()
-        with open(self._file_path, 'w') as f:
+        for key in self.__objects:
+            my_dict[key] = self.__objects[key].to_dict()
+        with open(self.__file_path, 'w') as f:
             json.dump(my_dict, f)
 
     def reload(self):
@@ -40,11 +40,11 @@ class FileStorage:
         deserialize the JSON file to _objects
         """
         try:
-            with open(self._file_path, 'r') as f:
+            with open(self.__file_path, 'r') as f:
                 json_object = json.load(f)
             for key in json_object:
-                self._objects[key] = classes[jo[key]["__class__"
+                self.__objects[key] = classes[jo[key]["__class__"
                                                 ]](**json_object[key])
-        except:
+        except FileNotFoundError:
             pass
 
