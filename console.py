@@ -8,7 +8,7 @@ import shlex
 import models
 from models.base_model import BaseModel
 
-classes = {"BaseModel": BaseModel
+classes = {"BaseModel": BaseModel, "User": User
            }
 
 
