@@ -5,6 +5,8 @@ Serializes instance to JSON file and deserializes JSON file file to instance
 
 import json
 
+classes = {"BaseModel": BaseModel
+        }
 
 class FileStorage:
     """
