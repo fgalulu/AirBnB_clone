@@ -4,9 +4,10 @@ Serializes instance to JSON file and deserializes JSON file file to instance
 """
 
 import json
+from models.base_model import BaseModel
 
-classes = {"BaseModel": BaseModel
-        }
+classes = {"BaseModel": BaseModel}
+
 
 class FileStorage:
     """
@@ -46,7 +47,6 @@ class FileStorage:
                 json_object = json.load(f)
             for key in json_object:
                 self.__objects[key] = classes[jo[key]["__class__"
-                                                ]](**json_object[key])
+                                                      ]](**json_object[key])
         except FileNotFoundError:
             pass
-

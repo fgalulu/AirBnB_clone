@@ -9,7 +9,7 @@ from models import storage
 from models.base_model import BaseModel
 
 classes = {"BaseModel": BaseModel
-        }
+           }
 
 
 class HBNBCommand(cmd.Cmd):
@@ -117,6 +117,7 @@ class HBNBCommand(cmd.Cmd):
         """
         args = shlex.split(arg)
         pass
+
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()

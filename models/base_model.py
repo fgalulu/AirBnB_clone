@@ -12,14 +12,14 @@ time_format = "%Y-%m-%dT%H:%M:%S.%f"
 class BaseModel():
     """Defines comman attributes for other classes."""
     def __init__(self, *args, **kwargs):
-        if  kwargs:
+        if kwargs:
             for key, value in kwargs.items():
                 if key != '__class__':
                     setattr(self, key, value)
             self.created_at = datetime.strptime(kwargs['created_at'],
-                    time_format)
+                                                time_format)
             self.updated_at = datetime.strptime(kwargs['updated_at'],
-                    time_format)
+                                                time_format)
         else:
             self.id = str(uuid.uuid4())
             self.created_at = datetime.utcnow()
@@ -29,7 +29,8 @@ class BaseModel():
     def __str__(self):
         """String representation of the BaseModel"""
         return "[{:s}] ({:s}) {}".format(self.__class__.__name__, self.id,
-                                       self.__dict__)
+                                         self.__dict__)
+
     def save(self):
         """
         Updates the current public instance attribute
@@ -44,8 +45,10 @@ class BaseModel():
         """
         new_dict = self.__dict__.copy()
         if "created_at" in new_dict:
-            new_dict["created_at"] = new_dict["created_at"].strftime(time_format)
+            new_dict["created_at"] = new_dict["created_at"].\
+                                            strftime(time_format)
         if "updated_at" in new_dict:
-            new_dict["updated_at"] = new_dict["updated_at"].strftime(time_format)
+            new_dict["updated_at"] = new_dict["updated_at"].\
+                                            strftime(time_format)
         new_dict["__class__"] = self.__class__.__name__
         return new_dict
