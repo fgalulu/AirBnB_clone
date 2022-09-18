@@ -13,7 +13,7 @@ class TestBaseModel(unittest.TestCase):
         my_model = BaseModel()
         my_model.name = "Alx"
         my_model.message = "C is fun"
-        m_dict = the_model.to_dict()
+        m_dict = my_model.to_dict()
         self.assertEqual(m_dict["__class__"], "BaseModel")
         self.assertEqual(m_dict["message"], "C is fun")
 
@@ -23,10 +23,10 @@ class TestBaseModel(unittest.TestCase):
         """
         my_model = BaseModel()
         created_at_1 = my_model.created_at
-        updated_at_1 = may_model.updated_at
+        updated_at_1 = my_model.updated_at
         my_model.save()
         created_at_2 = my_model.created_at
-        updated_at_2 = may_model.updated_at
+        updated_at_2 = my_model.updated_at
         self.assertEqual(created_at_1, created_at_2)
         self.assertNotEqual(updated_at_1, updated_at_2)
 

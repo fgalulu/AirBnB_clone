@@ -7,6 +7,7 @@ import cmd
 import shlex
 import models
 from models.base_model import BaseModel
+from models.user import User
 
 classes = {"BaseModel": BaseModel, "User": User
            }
@@ -60,7 +61,7 @@ class HBNBCommand(cmd.Cmd):
         elif args[0] in classes:
             if len(args) > 1:
                 key = args[0] + '.' + args[1]
-                if key in storage.all():
+                if key in models.storage.all():
                     models.storage.all().pop(key)
                     models.storage.save()
                 else:
@@ -83,7 +84,7 @@ class HBNBCommand(cmd.Cmd):
             pritn(", ".join(obj_list), end="")
             print("]")
         elif args[0] in classes:
-            for item in storage.all():
+            for item in models.storage.all():
                 if arg[0] in item:
                     obj_list.append(str(models.storage.all()[key]))
                 print("[", end="")

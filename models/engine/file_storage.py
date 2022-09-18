@@ -5,6 +5,7 @@ Serializes instance to JSON file and deserializes JSON file file to instance
 
 import json
 from models.base_model import BaseModel
+from models.user import User
 
 classes = {"BaseModel": BaseModel, "User": User}
 
